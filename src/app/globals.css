@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+:root {
+  /* RanchRodeo.pro accent, per the build map: brand-iron red on weathered oak.
+     The secondary is a sun-bleached sage — the colour of working country —
+     which keeps the palette heritage rather than sport. */
+  --ink: #14100c;
+  --ink-raised: #221a13;
+  --ink-panel: #2d231a;
+  --ink-border: #4b3b2a;
+
+  --brand: #b3402f;
+  --brand-deep: #8a2c1e;
+
+  --brand-2: #9aa886;
+  --brand-2-hover: #b5c1a2;
+
+  --cream: #f1e6d4;
+  --muted: #ac9c86;
+  --muted-dim: #7b6d5b;
+}
+
+@theme inline {
+  --color-background: var(--ink);
+  --color-foreground: var(--cream);
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-panel: var(--ink-panel);
+  --color-ink-border: var(--ink-border);
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-2: var(--brand-2);
+  --color-brand-2-hover: var(--brand-2-hover);
+  --color-cream: var(--cream);
+  --color-muted: var(--muted);
+  --color-muted-dim: var(--muted-dim);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+/* Arena backdrop, same approach as the other Rodeo Apps sites. */
+.arena-page {
+  --arena-bg-image: none;
+  position: relative;
+  isolation: isolate;
+  background-color: var(--ink);
+}
+
+.arena-page::before {
+  content: "";
+  position: fixed;
+  inset: -4%;
+  z-index: -2;
+  pointer-events: none;
+  background-image: var(--arena-bg-image);
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px) saturate(0.9) contrast(1.05);
+  opacity: 0.5;
+  transform: scale(1.06);
+}
+
+.arena-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(179, 64, 47, 0.14), rgba(20, 16, 12, 0.6) 68%),
+    linear-gradient(160deg, rgba(20, 16, 12, 0.72), rgba(34, 26, 19, 0.9));
+}
+
+.arena-bg-1 {
+  --arena-bg-image: url("/backgrounds/arena-1.jpg");
+}
+
+.arena-bg-2 {
+  --arena-bg-image: url("/backgrounds/arena-2.jpg");
+}
+
+.arena-panel {
+  background: rgba(34, 26, 19, 0.72);
+  border: 1px solid var(--ink-border);
+  border-radius: 18px;
+  backdrop-filter: blur(2px);
+}
+
+/* Long-form prose shared by the rules page and the blog. */
+.prose-arena h2 {
+  color: var(--brand);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-arena h3 {
+  color: var(--brand-2);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-arena p {
+  color: #e3d8c8;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.prose-arena ul,
+.prose-arena ol {
+  color: #e3d8c8;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  padding-left: 1.25rem;
+}
+
+.prose-arena ul {
+  list-style: disc;
+}
+
+.prose-arena ol {
+  list-style: decimal;
+}
+
+.prose-arena li {
+  margin-bottom: 0.35rem;
+}
+
+.prose-arena a {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+.prose-arena strong {
+  color: var(--cream);
+}
+
+/* Producer tag used on the rules page. Ranch rodeo has no single national
+   rulebook — the producer or association sets the card, the scale, and the
+   tiebreakers — so anything configurable is labelled as such rather than
+   stated as a rule. */
+.assoc-tag {
+  display: inline-block;
+  border: 1px solid var(--ink-border);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-2);
+  background: rgba(154, 168, 134, 0.1);
+  vertical-align: middle;
+}
+
+/* Points ladder shown on the landing page. Ranch rodeo scores in placings and
+   points rather than times, which is the structural difference driving the
+   whole product. */
+.points-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.5rem;
+}
+
+.points-cell {
+  border: 1px solid var(--ink-border);
+  border-radius: 12px;
+  background: rgba(34, 26, 19, 0.7);
+  padding: 0.85rem 0.5rem;
+  text-align: center;
+}
+
+.points-cell .points-place {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.points-cell .points-value {
+  margin-top: 0.3rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--brand);
+}
